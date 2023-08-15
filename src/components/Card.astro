@@ -1,0 +1,54 @@
+---
+interface Props {
+  name: string;
+  picture: any;
+  comment: string;
+  rating: number;
+}
+
+const { name, picture, comment, rating } = Astro.props;
+import { Icon } from "astro-icon";
+import star from '../images/star.svg'
+
+let rates= []
+let i;
+for(i=0; i<rating; i++){
+	rates.push(i)
+}
+---
+
+<div
+  class="w-[350px] h-[400px] bg-white md:w-[380px] lg:w-[322px] mt-[20px] lg:mt-[0px]"
+>
+  <div class="flex justify-between items-center w-8/12 ml-[20px] mt-[25px]">
+    <img src={picture} class="rounded-full w-[70px] h-[70px]" />
+    <div class="text-[19px]">{name}</div>
+  </div>
+  <div>
+    <Icon name="icomoon-free:quotes-left" class="w-[20px] h-[20px] ml-[10px] mt-[20px]"/>
+	<div class="leading-8 text-[20px] w-10/12 mx-auto">{comment}</div>
+	<Icon name="icomoon-free:quotes-right" class="w-[20px] h-[20px] ml-[270px]"/>
+
+  </div>
+
+  <div class="flex w-10/12 justify-between mx-auto items-center mt-[10px]">
+	<div class="text-[20px]">Rating</div>
+	<div class="flex gap-1">
+	{rates.map(()=>{
+		return (
+			<img src={star} class="w-[15px] h-[15px]"/>
+		)
+	})}
+	</div>
+  </div>
+</div>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@10..48&display=swap");
+  .fontlogo {
+    font-family: "Bricolage Grotesque";
+  }
+</style>
+
+<script>
+</script>

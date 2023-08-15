@@ -1,0 +1,21 @@
+---
+interface Props {
+  tabletitle: string;
+  tableinfo: string;
+  even: boolean;
+}
+
+const { tabletitle, tableinfo, even } = Astro.props;
+---
+<tr class={even ? "bg-slate-400":""}>
+    <td class="text-[20px]">{tabletitle}</td>
+    <td class="text-[20px] ">{tableinfo}</td>
+
+</tr>
+
+<style>
+    td{
+        border: 2px solid black;
+        padding-left: 12px;
+    }
+</style>

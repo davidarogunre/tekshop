@@ -1,0 +1,26 @@
+---
+import Card from "./Card.astro";
+import dummypfp from "../images/download.png"
+---
+<div class="bg-[#EFEFFA] w-full pb-[60px]">
+    <div class="flex justify-center">
+        <div class="w-11/12 flex justify-between">
+            <div class="text-[27px] md:text-[40px] font-medium mt-[30px]">Recommended by valued customers</div>
+            <div class="w-[5px] h-[5px]"></div>
+        </div>
+    </div>
+    <div class="flex justify-center">
+        <div class="flex flex-col items-center lg:flex-row justify-between w-[95%] mt-[20px]">
+            <Card name="John Doe" picture={dummypfp} comment="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus vitae magni minima nemo facere non impedit soluta pariatur adipisci autem." rating={4}/>
+            <Card name="Richard Wilson" picture={dummypfp} comment="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus vitae magni minima nemo facere non impedit soluta pariatur adipisci autem." rating={4}/>
+            <Card name="Emilia Brooklyn" picture={dummypfp} comment="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus vitae magni minima nemo facere non impedit soluta pariatur adipisci autem." rating={4}/>
+        </div>
+    </div>
+</div>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@10..48&display=swap');
+    .fontlogo{
+        font-family: 'Bricolage Grotesque';
+    }
+  </style>
