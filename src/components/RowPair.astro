@@ -8,8 +8,8 @@ interface Props {
 const { tabletitle, tableinfo, even } = Astro.props;
 ---
 <tr class={even ? "bg-slate-400":""}>
-    <td class="text-[20px]">{tabletitle}</td>
-    <td class="text-[20px] ">{tableinfo}</td>
+    <td class="text-[20px] font-medium">{tabletitle}</td>
+    <td class="text-[20px] font-medium">{tableinfo}</td>
 
 </tr>
 

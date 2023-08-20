@@ -1,0 +1,99 @@
+---
+import Input from "./Input.astro";
+
+---
+
+<div class="pb-[120px]" id = 'order'>
+    <div>
+        <div class="text-[27px] md:text-[36px] font-semibold flex justify-center">
+            Order your Idino Notepad 8 Now!!
+        </div>
+        <div>
+            <form class="w-10/12 md:w-9/12 mx-auto mt-[25px]">
+                <div>
+                <label class="text-[19px]">Name <span class="text-red-500 font-bold">*</span></label>
+                <div class="flex justify-between flex-col md:flex-row gap-5 mt-[5px]">
+                    <Input typedata="text" id="firstname" placeholderdata="First name" requireddata={true}/>
+                    <Input typedata="text" id="lastname" placeholderdata="Last name" requireddata={true}/>
+                </div>
+            </div>
+            <div class="mt-[15px]">
+                <label class="text-[19px]">Address <span class="text-red-500 font-bold">*</span></label>
+                <div class="flex mt-[5px]">
+                    <input id="address" class="border-[0.1rem] rounded w-full h-[45px] pl-[6px] outline-blue-700 border-slate-500" type="text" placeholder="Address" required/>
+                </div>
+            </div>
+            <div class="mt-[15px]">
+                <label class="text-[19px]">Phone <span class="text-red-500 font-bold">*</span></label>
+                <div class="flex justify-between flex-col md:flex-row gap-5 mt-[5px]">
+                    <Input id="phone" typedata="text" placeholderdata="Phone 1" requireddata={true}/>
+                    
+                    <Input id="phone2" typedata="text" placeholderdata="Phone 2" requireddata={true}/>
+                </div>
+            </div>
+            <div class="mt-[15px]">
+                <label class="text-[19px]">Product Details <span class="text-red-500 font-bold">*</span></label>
+                <div class="flex justify-between flex-col md:flex-row gap-5 mt-[5px]">
+                    <div class="flex items-center justify-between w-[180px]">
+                        <input id="product" type="checkbox" id="Idino" class='w-[20px] h-[20px]' required>
+                        <label for="Idino" class="text-[20px]"> Idino Notepad 8</label>   
+                    </div>                
+                    <Input id="quantity" typedata="number" placeholderdata="Quantity" requireddata={true}/>
+                </div>
+            </div>
+            <button id="submit" class="bg-[#3432af] hover:bg-[#2320CC] mt-[20px] text-white pt-[10px] pb-[10px] pl-[15px] pr-[15px] rounded" type="submit">Order Now</button>
+            <div class = 'news'></div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    const firstname = document.querySelector('#firstname') as HTMLInputElement
+    const lastname = document.querySelector('#lastname') as HTMLInputElement
+    const address = document.querySelector('#address') as HTMLInputElement
+    const phone = document.querySelector('#phone') as HTMLInputElement
+    const phone2 = document.querySelector('#phone2') as HTMLInputElement
+    const product = document.querySelector('#product') as HTMLInputElement
+    const quantity = document.querySelector('#quantity') as HTMLInputElement
+    let form = document.querySelector('form')
+
+    async function formSubmit(){
+        let data = {
+            name: `${firstname.value} ${lastname.value}`,
+            address: `${address.value}`,
+            phone: `${phone.value}`,
+            phone2: `${phone2.value}`,
+            product: `Idino Notepad 8`,
+            quantity: Number(quantity.value)
+        }
+        firstname.value = ''
+        lastname.value = ''
+        address.value = ''
+        phone.value = ''
+        phone2.value = ''
+        quantity.value = ''
+        product.checked = false
+        let POST = {
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+        try{
+        let res = await fetch('http://localhost:8000/order', POST)
+        if (!res.ok){
+            throw Error('There was an error in making your order, try again')
+        }
+        let order = await res.json()
+        console.log(order)
+    }catch(e){
+
+    }
+    }
+    form.addEventListener('submit',async(e)=>{
+        e.preventDefault()
+        await formSubmit()
+    })
+
+</script>
